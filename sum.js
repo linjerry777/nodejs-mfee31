@@ -5,14 +5,16 @@ function sum(num) {
     if (num < 0) {
         for (let i = 0; i >= num; i--) {
             total += i;
-            return total;
+            
         }
+        return total;
     } else {
         for (let i = 0; i <= num; i++) {
             total += i;
-            return total;
+            
 
         }
+        return total;
     }
 
     
