@@ -1,24 +1,29 @@
 
 
 function sum(num) {
-    let sum = 0;
-    if(num<0){
+    let total = 0;
+    if (num < 0) {
         for (let i = 0; i >= num; i--) {
-            sum += i;
-    
+            total += i;
+            return total;
         }
-    }else{
+    } else {
         for (let i = 0; i <= num; i++) {
-            sum += i;
-    
+            total += i;
+            return total;
+
         }
     }
-   
-    console.log(sum)
+
+    
 }
 
+console.log(sum(-10))
+console.log(sum(0))
+console.log(sum(10))
 
-sum(-10)
-sum(10)
+
+
+
 
 
