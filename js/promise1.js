@@ -23,6 +23,12 @@ let doWorkPromise = function (job, timer) {
   let brushPromise = doWorkPromise('刷牙', 3000);
   brushPromise
     .then((data) => {
+      console.log(data); return doWorkPromise('早餐', 3000)
+    })
+    .then((data) => {
+      console.log(data); return doWorkPromise('上班', 3000)
+    })
+    .then((data) => {
       console.log(data);
     })
     .catch((err) => {
