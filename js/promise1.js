@@ -23,7 +23,7 @@ let doWorkPromise = function (job, timer) {
   let brushPromise = doWorkPromise('刷牙', 3000);
   brushPromise
     .then((data) => {
-      console.log(data); return doWorkPromise('早餐', 3000)
+      console.log(data); return doWorkPromise('早餐', 5000)
     })
     .then((data) => {
       console.log(data); return doWorkPromise('上班', 3000)
@@ -34,3 +34,22 @@ let doWorkPromise = function (job, timer) {
     .catch((err) => {
       console.error('發生錯誤', err);
     });
+/* 
+    let brushPromise = doWorkPromise('刷牙', 3000);
+    let eat = doWorkPromise('2', 3000);
+
+    let work = doWorkPromise('3', 3000);
+
+    brushPromise
+      .then((data) => {
+        console.log(data); return eat
+      })
+      .then((data) => {
+        console.log(data); return work
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error('發生錯誤', err);
+      }); */
