@@ -41,6 +41,8 @@ p('test.txt')
   })
   .then((data) => {
     console.log("收到", data)
+    return p('test3.txt')
+
   })
   .catch((err) => {
     console.log("沒收到", err);
