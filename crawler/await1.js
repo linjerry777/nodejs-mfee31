@@ -8,6 +8,11 @@ const axios = require('axios');
 const getStock = function(fileName){
     let readFilePromise = util.promisify(fs.readFile);
 
+    (async()=>{
+        const data  = await readFilePromise(fileName, 'utf-8')
+    console.log(data);
+
+    })()
 readFilePromise(fileName, 'utf-8')
   .then((data) => {
     console.log(data);
