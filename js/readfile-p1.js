@@ -36,10 +36,12 @@ const p = function (fileName) {
   return doreadFile;
 };
 
-
-async function read() {
+/* async function read() {
   try {
     console.log(await p("test.txt"));
+
+    if(data='hello'){ console.log(await p("test1.txt"));}else{}
+
     console.log(await p("test1.txt"));
     console.log(await p("test2.txt"));
     console.log(await p("test3.txt"));
@@ -48,4 +50,18 @@ async function read() {
     console.error(err);
   }
 }
-read();
+read(); */
+
+
+//Promise.all 都完成才傳回promise物件
+//Promise.race 回傳最先完成的
+(async () => {
+  
+  let p1 = p("test1.txt")
+  let p2 = p("test2.txt")
+  let p3 = p("test.txt")
+    let a = await Promise.all([p1,p2,p3])
+    let b = await Promise.race([p1,p2,p3])
+    console.log(a,b)
+  
+})();

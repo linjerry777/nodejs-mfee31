@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors())
 
 app.get('/', (req, res) => {
-    res.json('hello this backend')
+    res.json('helloooooo this backend')
 })
 
 app.get('/books', (req, res) => {
@@ -50,6 +50,7 @@ app.delete('/books/:id', (req, res) => {
         return res.json("書本刪除成功")
     })
 })
+
 
 app.put('/books/:id', (req, res) => {
     const bookId= req.params.id;
