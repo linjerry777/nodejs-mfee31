@@ -11,6 +11,7 @@ const getStock = function(fileName){
 readFilePromise(fileName, 'utf-8')
   .then((data) => {
     console.log(data);
+    
     (async () => {
         try {
           let stockNo = data;
