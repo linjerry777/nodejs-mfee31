@@ -49,14 +49,14 @@ app.get("/stocks/:stock_id", async (req, res) => {
   res.json(data);
 });
 
-app.delete('/books/:id', (req, res) => {
+/* app.delete('/books/:id', (req, res) => {
   const bookId= req.params.id;
   const q = "DELETE FROM books WHERE id = ?"
   db.query(q, [bookId], (err, data) => {
       if (err) return res.json(err)
       return res.json("書本刪除成功")
   })
-})
+}) */
 
 
 
