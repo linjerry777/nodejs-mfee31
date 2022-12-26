@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
-import Pagination from './Pagination'
+
 const Stock = () => {
   const [error, setError] = useState(null)
   // const {error}=props
 
   //從資料庫抓股票並存進stock
   const [stock, setStock] = useState([])
+
+  //新增股票輸入id
 
   const getStockname = async () => {
     try {
@@ -18,12 +20,6 @@ const Stock = () => {
       console.log(error)
     }
   }
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostPerPage] = useState(4)
-  const lastPostIndex = currentPage * postsPerPage
-  const firstPostIndex = lastPostIndex - postsPerPage
-  const currentPosts = stock.slice(firstPostIndex, lastPostIndex)
-
   useEffect(() => {
     getStockname()
   }, [stock])
@@ -63,7 +59,7 @@ const Stock = () => {
   return (
     <div>
       {error && <div>{error}</div>}
-      {currentPosts.map((v, i) => {
+      {stock.map((v, i) => {
         return (
           <>
             {/* <h2 key={v.name} className="ml-7 mt-6 text-xl text-gray-600">股票代碼:{v.id}</h2> */}
@@ -93,11 +89,6 @@ const Stock = () => {
           </>
         )
       })}
-      <Pagination
-        totalPosts={stock.length}
-        postsPerPage={postsPerPage}
-        setCurrentPage={setCurrentPage}
-      />
       <form className="bg-purple-100 h-screen md:h-full md:my-20 md:mx-16 lg:mx-28 xl:mx-40 py-16 md:py-8 px-24 text-gray-800 md:shadow md:rounded flex flex-col md:justify-center">
         <h2 className="flex justify-center text-3xl mb-6 border-b-2 pb-2 border-gray-300">
           新增股票
