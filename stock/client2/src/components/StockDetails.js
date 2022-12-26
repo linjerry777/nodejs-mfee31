@@ -9,6 +9,7 @@ const StockDetails = () => {
   // const navigate = useNavigate()
   const location = useLocation()
   const stock_id = location.pathname.split('/')[2]
+  console.log(location)
   //用useParams 要注意 <Route path="/stocks/:stock_id"></Route> 參數要一樣
   // const { stock_id } = useParams()
   console.log(stock_id)
@@ -50,7 +51,10 @@ const StockDetails = () => {
       目前在第 1 頁{' '}
       {users.map((v, i) => {
         return (
-          <div className="bg-white bg-gray-50 p-6 rounded-lg shadow m-6">
+          <div
+            key={v.date}
+            className="bg-white bg-gray-50 p-6 rounded-lg shadow m-6"
+          >
             <h2 className="text-2xl font-bold mb-2 text-gray-800">
               日期：{v.date}
             </h2>

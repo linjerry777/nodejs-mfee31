@@ -49,6 +49,10 @@ app.get("/stocks/:stock_id", async (req, res) => {
   res.json(data);
 });
 
+
+
+
+
 /* app.delete('/books/:id', (req, res) => {
   const bookId= req.params.id;
   const q = "DELETE FROM books WHERE id = ?"
@@ -65,6 +69,24 @@ app.get("/stocks", async (req, res) => {
   let [data] = await pool.query(q);
   res.json(data);
 });
+
+
+app.post('/stocks', (req, res) => {
+  const q = "INSERT ignore INTO stocks (`id`, `name`) VALUES (?)"
+  const values = [
+      req.body.id,
+      req.body.name,
+  ]
+
+  pool.query(q, [values], (err, data) => {
+      if (err) return res.json(err)
+      return res.json("stock增加成功")
+  })
+}
+)
+
+
+
 
 
 app.post("/stocks", (req, res) => {
@@ -87,13 +109,12 @@ app.post("/stocks", (req, res) => {
     return res.json("股票增加成功");
   });
 });
-app.delete('/stocks/:date', (req, res,next) => {
-    const date= req.params.date;
-    const q = "DELETE FROM stock_prices WHERE stock_id = 2330 && date = (?)"
-    console.log('沒這頁')
-    db.query(q, [date], (err, data) => {
+app.delete('/stocks/:id', (req, res,next) => {
+    const id = req.params.id;
+    const q = "DELETE FROM stocks WHERE id = ?"
+    pool.query(q, [id], (err, data) => {
         if (err) return res.json(err)
         return res.json("股票刪除成功")
-
     })
 })
+
