@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import Pagination from './Pagination'
 
 const StockDetails = () => {
   const [error, setError] = useState(null)
@@ -12,6 +13,13 @@ const StockDetails = () => {
   console.log(location)
   //用useParams 要注意 <Route path="/stocks/:stock_id"></Route> 參數要一樣
   // const { stock_id } = useParams()
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostPerPage] = useState(4)
+  const lastPostIndex = currentPage * postsPerPage
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPosts = users.slice(firstPostIndex, lastPostIndex)
+
   console.log(stock_id)
   const getData = async () => {
     try {
@@ -48,8 +56,13 @@ const StockDetails = () => {
           1
         </li>
       </ul>
-      目前在第 1 頁{' '}
-      {users.map((v, i) => {
+      <Pagination
+        totalPosts={users.length}
+        postsPerPage={postsPerPage}
+        setCurrentPage={setCurrentPage}
+      />
+      目前在第 {currentPage} 頁 總筆數:{users.length}
+      {currentPosts.map((v, i) => {
         return (
           <div
             key={v.date}

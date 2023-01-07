@@ -6,27 +6,37 @@ import Pagination from './Pagination'
 const Stock = () => {
   const [error, setError] = useState(null)
   // const {error}=props
-
+  const [load, setLoad] = useState(false)
   //從資料庫抓股票並存進stock
   const [stock, setStock] = useState([])
 
-  const getStockname = async () => {
+  /* const getStockname = async () => {
     try {
       const response = await axios.get('http://localhost:8800/stocks')
+      
       setStock(response.data)
     } catch (error) {
       console.log(error)
     }
+  } */
+  const getStockname = async () => {
+    try {
+      const response = await axios.get('http://localhost:8800/api/stocks')
+
+      setStock(response.data)
+      setLoad(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
+  useEffect(() => {
+    getStockname()
+  }, [load])
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostPerPage] = useState(4)
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const currentPosts = stock.slice(firstPostIndex, lastPostIndex)
-
-  useEffect(() => {
-    getStockname()
-  }, [stock])
 
   const [newstock, setNewstcok] = useState({
     id: '',
@@ -44,6 +54,13 @@ const Stock = () => {
     e.preventDefault()
     try {
       await axios.post('http://localhost:8800/stocks', newstock)
+
+      // setNewstcok({
+      //   id: '',
+      //   name: '',
+      // })
+      window.location.reload()
+      setLoad(true)
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -71,7 +88,7 @@ const Stock = () => {
               key={v.id}
               className="bg-white bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg m-6 cursor-pointer"
             >
-              <Link to={`/stocks/${v.id}`}>
+              <Link to={`/api/stocks/${v.id}`}>
                 <h2 className="text-2xl font-bold mb-2 text-gray-800">
                   股票代碼:{v.id}
                 </h2>

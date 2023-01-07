@@ -5,6 +5,7 @@ import About from './components/About'
 import Login from './components/Login'
 import Register from './components/Register'
 import StockDetails from './components/StockDetails'
+import StockDetails1 from './components/StockDetails1'
 import NotFound from './components/NotFound'
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/stocks/:stock_id" element={<StockDetails />}>
-          <Route path=":currentPage" element={<StockDetails />} />
+        <Route path="/api/stocks/:stockId" element={<StockDetails1 />}>
+          <Route path=":currentPage" element={<StockDetails1 />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
